@@ -1,0 +1,44 @@
+#(using spacy) import spacy
+nlp = spacy.load("en_core_web_sm") print("SpaCy model loaded successfully ")
+ 
+#tokenization
+text = "I love programming." doc = nlp(text)
+tokens = [token.text for token in doc] print(tokens)
+ 
+#Lowercase
+text = "I Love Programming." print(text.lower())
+ 
+#Removing Punctuation import string
+text = "Hello, world!!!"
+cleaned = ".join([ch for ch in text if ch not in string.punctuation])”
+print(cleaned)
+#Stop-word Removal
+text = "The striped bats are hanging on their feet for the best." doc = nlp(text.lower())
+tokens = [token.text for token in doc if not token.is_stop] print(tokens)
+ 
+#Lemmatization
+text = "The striped bats are hanging on their feet for the best." doc = nlp(text.lower())
+lemmas = [token.lemma_ for token in doc if not token.is_stop and not token.is_punct] print("Lemmas:", lemmas)
+ 
+ 
+#Final Preprocessed Pipeline Example
+text = "The striped bats are hanging on their feet for the best." doc = nlp(text.lower())
+lemmas = [token.lemma_ for token in doc if not token.is_stop and not token.is_punct] print("Lemmas:", lemmas)
+ 
+#(Using nltk):
+#removing stopwords import nltk
+from nltk.corpus import stopwords nltk.download("stopwords") words = ["this", "is", "a", "book"]
+filtered = [w for w in words if w not in stopwords.words("english")] print(filtered)
+ 
+#stemming
+from nltk.stem import PorterStemmer stemmer = PorterStemmer()
+words = ["playing", "played", "plays"] print([stemmer.stem(w) for w in words])
+ 
+#Lemmatization
+from nltk.stem import WordNetLemmatizer nltk.download("wordnet")
+lemmatizer = WordNetLemmatizer() words = ["playing", "better", "cats"]
+lemmas = [lemmatizer.lemmatize(w) for w in words] print("Lemmas:", lemmas)
+ 
+#Removing Numbers / Special Characters import re
+text = "I have 2 cats &amp; 3 dogs." cleaned = re.sub(r"[^a-zA-Z]", " ", text) print(cleaned)
+ 
