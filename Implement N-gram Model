@@ -1,0 +1,7 @@
+import nltk
+from nltk.tokenize import word_tokenize from nltk.util import ngrams nltk.download('punkt_tab')
+text = "This is a simple sentence to demonstrate N-grams. N-grams are sequences of N items."
+tokens = word_tokenize(text.lower()) bigrams = list(ngrams(tokens, 2)) trigrams = list(ngrams(tokens, 3)) print("Original Tokens:", tokens) print("\nBigrams (N=2):")
+for gram in bigrams: print(gram
+print("\nTrigrams (N=3):") for gram in trigrams:
+print(gram) 
