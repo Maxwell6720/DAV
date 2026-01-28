@@ -1,0 +1,16 @@
+import nltk nltk.download('punkt') nltk.download('punkt_tab')
+from nltk.stem import PorterStemmer from nltk.tokenize import word_tokenize ps = PorterStemmer()
+sentence = "The children are playing with their friends and enjoying games" words = word_tokenize(sentence)
+print("Original Words: ", words) print("Stemmed Words: ")
+
+for word in words:
+print(word, " --> ", ps.stem(word))
+words = ["unhappyist", "redoing", "kindness", "hungry", "misunderstanding"] for word in words:
+if word.startswith(("un", "re", "mis")): prefix = word[:2]
+else:
+prefix = "-"
+if word.endswith(("ing", "ness", "ers")): suffix = word[-3:]
+else:
+suffix = "-"
+ 
+print(f"{word} --> Prefix: {prefix}, Root: (approx) {word[2:-3] if prefix!='-' and suffix!='-' else word}, Suffix: {suffix}")
