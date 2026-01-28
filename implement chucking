@@ -1,0 +1,7 @@
+import nltk
+from nltk.tokenize import word_tokenize from nltk.tag import pos_tag
+from nltk.chunk import RegexpParser nltk.download('averaged_perceptron_tagger_eng') sentence = "The quick brown fox jumps over the lazy dog." tokens = word_tokenize(sentence)
+print("Tokens:", tokens) pos_tags = pos_tag(tokens) print("POS Tags:", pos_tags) grammar = r"""
+NP: {<DT>?<JJ>*<NN>} """
+parser = RegexpParser(grammar) tree = parser.parse(pos_tags)
+print("\nChunked Tree (Noun Phrases):") tree.pretty_print()
