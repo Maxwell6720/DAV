@@ -1,0 +1,18 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize, sent_tokenize from collections import defaultdict
+from heapq import nlargest nltk.download('stopwords') nltk.download('punkt')
+text = """Natural Language Processing (NLP) is a field of artificial intelligence that focuses on the interaction between computers and human language. It enables computers to understand, interpret, and generate human language in a valuable way. NLP combines computational linguistics—rule-based modeling of human language—with statistical, machine learning, and deep learning models. These technologies allow computers to process large amounts of natural language data and perform tasks such as text summarization, machine translation, and sentiment analysis. The goal of NLP is to make computers understand human language as well as humans do. Recent advancements in deep learning, particularly with transformer models, have significantly improved NLP capabilities, leading to more accurate and nuanced understanding of text."""
+words = word_tokenize(text.lower()) sentences = sent_tokenize(text)
+stop_words = set(stopwords.words('english')) word_frequencies = defaultdict(int)
+for word in words:
+if word.isalnum() and word not in stop_words: word_frequencies[word] += 1
+sentence_scores = defaultdict(int)
+for i, sentence in enumerate(sentences):
+for word in word_tokenize(sentence.lower()):
+if word.isalnum() and word in word_frequencies: sentence_scores[i] += word_frequencies[word]
+summary_sentences = nlargest(3, sentence_scores, key=sentence_scores.get)
+ 
+final_summary = [sentences[i] for i in sorted(summary_sentences)] print("Original Text:\n", text)
+print("\nSummary:\n", " ".join(final_summary))
+
