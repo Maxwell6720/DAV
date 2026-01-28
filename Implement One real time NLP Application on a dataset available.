@@ -1,0 +1,20 @@
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer import time
+nltk.download('vader_lexicon')
+sia = SentimentIntensityAnalyzer() simulated_data_feed = [
+"I absolutely love this new feature! It's fantastic and so easy to use.", "The customer service was terrible today. Very unhelpful and rude.", "The product is okay, not bad but not exceptionally good either.", "Just received my order, and I'm quite happy with the quality.",
+"This update broke everything! I am so frustrated with this app now.", "Interesting article, though some points were debatable.",
+"Excited to try this out! Looks promising."
+]
+
+print("Simulating Real-time Sentiment Analysis:\n") for i, text_entry in enumerate(simulated_data_feed):
+print(f"--- Processing Entry {i+1} ---") print(f"Text: {text_entry}")
+sentiment_scores = sia.polarity_scores(text_entry) print(f" Sentiment Scores: {sentiment_scores}") if sentiment_scores['compound'] >= 0.05:
+sentiment_label = "Positive"
+elif sentiment_scores['compound'] <= -0.05: sentiment_label = "Negative"
+else:
+sentiment_label = "Neutral"
+print(f" Overall Sentiment: {sentiment_label}\n") time.sleep(1)
+ 
+print("Real-time Sentiment Analysis Simulation Complete.")
+
